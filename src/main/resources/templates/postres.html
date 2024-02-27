@@ -5,38 +5,54 @@
 <head>
     <meta charset="UTF-8">
     <title th:inline="text">Postres</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pagination {
+            justify-content: center;
+        }
+    </style>
+
 </head>
 <body>
 
 
 <div layout:fragment="content">
-    <h4>Todos los postres</h4>
+    <h4 class="display-2 text-center mt-3 mb-4">Todos los postres</h4>
 
-    <div class="row">
-        <div class="row">
-            <div class="col-md-3 my-5" th:each="postre : ${postres}" th:object="${postre}">
-                <a th:href="@{/postres/{id}(id=*{id})}" class="card shadow-lg" style="text-decoration:none;">
-                    <img th:src="@{/assets/{filename}(filename=*{rutaImagen})}" th:alt="*{nombre}" class="card-img-top">
-                    <div class="card-body">
-                        <h2 class="card-title fs-6" th:text="*{nombre}"></h2>
-                        <p th:text="*{precio}" class="text-muted small"></p>
-                    </div>
-                </a>
-            </div>
+    <div class="row justify-content-center">
+        <div class="col-md-3 my-5" th:each="postre : ${postres}" th:object="${postre}">
+            <a th:href="@{/postres/{id}(id=*{id})}" class="card shadow-lg text-decoration-none" style="color: inherit;">
+                <img th:src="@{/assets/{filename}(filename=*{rutaImagen})}" th:alt="*{nombre}" class="card-img-top">
+                <div class="card-body">
+                    <h2 class="card-title fs-6 text-center" th:text="*{nombre}"></h2>
+                    <p th:text="'Precio: ₲' + *{precio}" class="text-muted small text-center"></p>
+                </div>
+            </a>
         </div>
+    </div>
 
-        <div class="row mt-5" th:with="page=${postres}">
+    <div class="row mt-5" th:with="page=${postres}">
+        <div class="col-sm-6">
+            <div sd:pagination-sumary></div>
             <div class="col-sm-6">
-                <div sd:pagination-sumary>
-                </div>
-                <div class="col-sm-6">
-                    <nav>
-                        <ul class="pagination" sd:pagination="full"></ul>
-                    </nav>
-                </div>
+                <nav>
+                    <ul class="pagination" sd:pagination="full"></ul>
+                </nav>
             </div>
         </div>
-
     </div>
 </div>
 

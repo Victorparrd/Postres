@@ -5,25 +5,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .jumbotron {
+            background-color: #f8f9fa;
+        }
+        .card {
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+
 </head>
 <body>
 
 
 <div layout:fragment="content">
-    <div class="bg-light p-1 rounded">
+    <div class="jumbotron text-center">
         <h1 class="display-1 text-success">Leo y Olivia's Bakery</h1>
         <h2>Donde cada bocado es un deleite</h2>
     </div>
 
-    <h4 class="text-danger mt-5">Algunos postres</h4>
+    <h4 class="text-danger mt-5 text-center">Algunos postres</h4>
 
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-3 my-5" th:each="postre : ${ordenPostres}" th:object="${postre}">
             <a th:href="@{/postres/{id}(id=*{id})}" class="card shadow-lg" style="text-decoration:none;">
                 <img th:src="@{/assets/{filename}(filename=*{rutaImagen})}" th:alt="*{nombre}" class="card-img-top">
                 <div class="card-body">
-                    <h2 class="card-title fs-6" th:text="*{nombre}"></h2>
-                    <p th:text="*{precio}" class="text-muted small"></p>
+                    <h2 class="card-title fs-6 text-center" th:text="*{nombre}"></h2>
+                    <p th:text="'Precio: ₲' + *{precio}" class="text-muted small text-center"></p>
                 </div>
             </a>
         </div>

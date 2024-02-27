@@ -9,7 +9,7 @@
 <body>
 
 <div layout:fragment="content">
-    <h2>Leo y Olivia's Bakery</h2>
+    <h2 class="display-3">Administrar postres</h2>
     <br>
     <div>
         <a href="/admin/postres/nuevo" class="btn btn-success mb-3">Agregar nuevo</a>
@@ -45,7 +45,7 @@
                           th:text="${categoria.descripcion}"></span>
                 </div>
             </td>
-            <td th:text="*{precio}"></td>
+            <td th:text="'₲' + *{precio}"></td>
         </tbody>
     </table>
 
