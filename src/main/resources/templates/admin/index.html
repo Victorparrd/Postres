@@ -26,13 +26,13 @@
         <tbody>
         <tr th:each="postre : ${postres}" th:object="${postre}">
             <td>
-                <a class="btn btn-primary" th:href="@{/admin/postres/{id}/editar(id=*{id})}">Editar</a>
+                <a class="btn btn-primary" th:href="@{/admin/postres/{id}/editar(id=*{id})}"><i class="fas fa-edit"></i></a>
                 <a href="javascript:void(0)" class="btn btn-danger"
-                   th:onclick="'eliminarPostre(' + *{id} +')'">Eliminar</a>
+                   th:onclick="'eliminarPostre(' + *{id} +')'"><i class="fas fa-trash-alt"></i></a>
                 <form th:id="'eliminarPostreForm' + *{id}" th:action="@{/admin/postres/{id}/eliminar(id=*{id})}"
                       method="post" class="d-none"></form>
             </td>
-            <td style="width:150px;">
+            <td style="width:200px;">
                 <a th:href="@{/assets/{filename}(filename=*{rutaImagen})}" data-fancybox>
                     <img th:src="@{/assets/{filename}(filename=*{rutaImagen})}" alt="" class="img-thumbnail w-100">
                 </a>
