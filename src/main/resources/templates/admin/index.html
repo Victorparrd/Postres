@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{master.html}">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrar Postres</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <h2>Leo y Olivia's Bakery</h2>
+    <br>
+    <div>
+        <a href="/admin/postres/nuevo" class="btn btn-success mb-3">Agregar nuevo</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Acciones</th>
+            <th>Imagen</th>
+            <th>Postre</th>
+            <th>Precio</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="postre : ${postres}" th:object="${postre}">
+            <td>
+                <a class="btn btn-primary" th:href="@{/admin/postres/{id}/editar(id=*{id})}">Editar</a>
+                <a href="javascript:void(0)" class="btn btn-danger"
+                   th:onclick="'eliminarPostre(' + *{id} +')'">Eliminar</a>
+                <form th:id="'eliminarPostreForm' + *{id}" th:action="@{/admin/postres/{id}/eliminar(id=*{id})}"
+                      method="post" class="d-none"></form>
+            </td>
+            <td style="width:150px;">
+                <a th:href="@{/assets/{filename}(filename=*{rutaImagen})}" data-fancybox>
+                    <img th:src="@{/assets/{filename}(filename=*{rutaImagen})}" alt="" class="img-thumbnail w-100">
+                </a>
+            </td>
+            <td>
+                <div th:text="*{nombre}" class="fs-5 fw-bold"></div>
+                <p th:text="*{descripcion}"></p>
+                <div>
+                    <span class="badge rounded-pill bg-light text-dark me-1" th:each="categoria: *{categorias}"
+                          th:text="${categoria.descripcion}"></span>
+                </div>
+            </td>
+            <td th:text="*{precio}"></td>
+        </tbody>
+    </table>
+
+    <div class="row mt-5" th:with="page=${postres}">
+        <div class="col-sm-6">
+            <div sd:pagination-sumary>
+            </div>
+            <div class="col-sm-6">
+                <nav>
+                    <ul class="pagination" sd:pagination="full"></ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div layout:fragment="scripts">
+    <script>
+        function eliminarPostre(id) {
+            if (!confirm('¿Estás seguro de eliminar este postre?')) {
+                return;
+            }
+            $('#eliminarPostreForm' + id).submit();
+        }
+    </script>
+</div>
+
+</body>
+</html>
