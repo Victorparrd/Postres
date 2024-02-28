@@ -8,17 +8,38 @@
 
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: "Homer Simpson UI", serif;
             background-color: #f8f9fa;
+            color: #222;
+            font-size: 24px;
         }
+
         .jumbotron {
             background-color: #f8f9fa;
+            color: #9d8f40;
+            padding: 2rem 1rem;
         }
+
         .card {
             transition: transform 0.3s;
+            border: 1px solid #222;
+            border-radius: 10px;
+            overflow: hidden;
+            color: #9d8f40;
         }
+
         .card:hover {
             transform: translateY(-5px);
+        }
+
+        .card img {
+            border-bottom: 1px solid #222;
+        }
+
+        .row {
+            background-color: #f8f9fa;
+            color: #9d8f40;
+            padding: 2rem 1rem;
         }
     </style>
 
@@ -28,13 +49,12 @@
 
 <div layout:fragment="content">
     <div class="jumbotron text-center">
-        <h1 class="display-1 text-success">Leo y Olivia's Bakery</h1>
+        <h1 class="display-1">Leo y Olivia's Bakery</h1>
         <h2>Donde cada bocado es un deleite</h2>
     </div>
 
-    <h4 class="text-danger mt-5 text-center">Algunos postres</h4>
-
     <div class="row justify-content-center">
+        <h4 class="text-center">Algunos de nuestros productos</h4>
         <div class="col-md-3 my-5" th:each="postre : ${ordenPostres}" th:object="${postre}">
             <a th:href="@{/postres/{id}(id=*{id})}" class="card shadow-lg" style="text-decoration:none;">
                 <img th:src="@{/assets/{filename}(filename=*{rutaImagen})}" th:alt="*{nombre}" class="card-img-top">

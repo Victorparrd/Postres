@@ -39,6 +39,7 @@
                 <div class="invalid-feedback" th:if="${#fields.hasErrors('imagen')}" th:errors="*{imagen}"></div>
             </div>
             <div class="text-end">
+                <a class="btn btn-danger" href="/admin">Volver</a>
                 <button type="submit" class="btn btn-primary">Guardar</button>
             </div>
         </form>

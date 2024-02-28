@@ -8,8 +8,10 @@
 
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: "Homer Simpson UI", serif;
             background-color: #f8f9fa;
+            color: #9d8f40;
+            font-size: 24px;
         }
 
         .card {
@@ -30,7 +32,7 @@
 
 
 <div layout:fragment="content">
-    <h4 class="display-2 text-center mt-3 mb-4">Todos los postres</h4>
+    <h4 class="display-2 text-center mt-3 mb-4">Catálogo</h4>
 
     <div class="row justify-content-center">
         <div class="col-md-3 my-5" th:each="postre : ${postres}" th:object="${postre}">
