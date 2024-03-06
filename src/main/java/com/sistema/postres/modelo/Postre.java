@@ -1,16 +1,16 @@
 package com.sistema.postres.modelo;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
-public class Postre {
+public class Postre{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_postre")
@@ -112,5 +112,31 @@ public class Postre {
         this.rutaImagen = rutaImagen;
         this.categorias = categorias;
         this.imagen = imagen;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Postre postre = (Postre) o;
+        return Objects.equals(id, postre.id) && Objects.equals(nombre, postre.nombre) && Objects.equals(descripcion, postre.descripcion) && Objects.equals(precio, postre.precio) && Objects.equals(rutaImagen, postre.rutaImagen) && Objects.equals(categorias, postre.categorias) && Objects.equals(imagen, postre.imagen);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nombre, descripcion, precio, rutaImagen, categorias, imagen);
+    }
+
+    @Override
+    public String toString() {
+        return "Postre{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", precio=" + precio +
+                ", rutaImagen='" + rutaImagen + '\'' +
+                ", categorias=" + categorias +
+                ", imagen=" + imagen +
+                '}';
     }
 }
